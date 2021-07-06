@@ -80,14 +80,19 @@ namespace WinFormsApp4
             }
             foreach (User user in getFollow)
             {
-                var birth = DateTime.Parse(user.BirthDate);
-                if (now.Day == birth.Day && now.Month == birth.Month)
+                
+                if (user.BirthDate?.Length >= 3)
                 {
-                    var post = apiUser.Wall.Post(new WallPostParams
+                    var birth = DateTime.Parse(user.BirthDate);
+                    if (now.Day == birth.Day && now.Month == birth.Month)
                     {
-                        Message = "С днем рождения" + "," + user.FirstName + user.LastName
-                    });
+                        var post = apiUser.Wall.Post(new WallPostParams
+                        {
+                            Message = "С днем рождения" + "," + user.FirstName + user.LastName
+                        });
+                    }
                 }
+                
             }
         }
 
