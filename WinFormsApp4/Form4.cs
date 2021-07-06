@@ -58,7 +58,7 @@ namespace WinFormsApp4
                     sum += age;
                 }
             }
-            textBox2.Text += (sum / k).ToString() + " лет\n";
+            textBox2.Text = (sum / k).ToString() + " лет\n";
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -70,7 +70,7 @@ namespace WinFormsApp4
                 getFollow = apiUser.Groups.GetMembers(new GroupsGetMembersParams()
                 {
                     GroupId = textBox1.Text,
-                    Fields = VkNet.Enums.Filters.UsersFields.FirstNameAbl
+                    Fields = VkNet.Enums.Filters.UsersFields.All
                 });
             }
             catch (VkNet.Exception.VkApiException ex)
@@ -80,17 +80,19 @@ namespace WinFormsApp4
             }
             foreach (User user in getFollow)
             {
-                
                 if (user.BirthDate?.Length >= 3)
                 {
                     var birth = DateTime.Parse(user.BirthDate);
                     if (now.Day == birth.Day && now.Month == birth.Month)
                     {
+                        MessageBox.Show("Birthday: "+ birth.Day.ToString() + " " + birth.Month.ToString());
                         var post = apiUser.Wall.Post(new WallPostParams
                         {
-                            Message = "С днем рождения" + "," + user.FirstName + user.LastName
+                            OwnerId = -int.Parse(textBox1.Text),
+                            Message = $"С днем рождения, @id{user.Id} ({user.FirstName} {user.LastName})"
                         });
                     }
+                    MessageBox.Show(birth.Day.ToString() + " " + birth.Month.ToString());
                 }
                 
             }
