@@ -44,12 +44,17 @@ namespace WinFormsApp4
         {
             Formforgetmembers f = new Formforgetmembers(_apiUser, _apiCommunity);
             f.ShowDialog();
-           
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             DeletePostsForm f = new DeletePostsForm(_apiUser, _apiCommunity);
+            f.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Form4 f = new Form4(_apiUser);
             f.ShowDialog();
         }
     }
