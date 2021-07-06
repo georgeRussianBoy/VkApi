@@ -42,7 +42,6 @@ namespace WinFormsApp4
         {
             listBox1.Items.Clear();
             users.Clear();
-            // обработать исключения!
 
             MessageBox.Show(_api_user.Token);
             var getFriends = _api_user.Friends.Get(new VkNet.Model.RequestParams.FriendsGetParams
@@ -91,7 +90,7 @@ namespace WinFormsApp4
             {
                 if (checkBox1.Checked)
                 {
-                    s += "Пол:" + user.Sex + "\n";
+                    s += "Пол:" + Encoding.UTF8.GetString(Encoding.Default.GetBytes(user.Sex) + "\n";
                 }
                 if (checkBox2.Checked)
                 {
