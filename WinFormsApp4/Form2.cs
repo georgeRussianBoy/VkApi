@@ -20,7 +20,6 @@ namespace WinFormsApp4
         {
             InitializeComponent();
             _api_user = api_user;
-            MessageBox.Show(api_user.Token);
             _api_group = api_group;
         }
 
