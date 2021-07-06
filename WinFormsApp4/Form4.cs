@@ -63,8 +63,34 @@ namespace WinFormsApp4
 
         private void button2_Click(object sender, EventArgs e)
         {
+            var now = DateTime.Today;
+            VkNet.Utils.VkCollection<User> getFollow;
+            try
+            {
+                getFollow = vkapi.Groups.GetMembers(new GroupsGetMembersParams()
+                {
+                    GroupId = textBox1.Text,
+                    Fields = VkNet.Enums.Filters.UsersFields.FirstNameAbl
+                });
+            }
+            catch (VkNet.Exception.VkApiException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            foreach (User user in getFollow)
+            {
+                var birth = DateTime.Parse(user.BirthDate);
+                if (now.Day == birth.Day && now.Month == birth.Month)
+                {
+                    var post = vkapi.Wall.Post(new WallPostParams
+                    {
+                        Message = "С днем рождения" + "," + user.FirstName + user.LastName
+                    });
+                }
+            }
         }
 
-       
+
     }
 }
