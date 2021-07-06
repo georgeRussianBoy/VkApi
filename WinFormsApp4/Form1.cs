@@ -73,7 +73,7 @@ namespace WinFormsApp4
                 return;
             }
 
-            FunctionalForm f = new FunctionalForm(ref apiUser, ref apiCommunity);
+            FunctionalForm f = new FunctionalForm(apiUser, apiCommunity);
             this.Hide();
             f.ShowDialog();
             this.Show();
