@@ -52,10 +52,22 @@ namespace WinFormsApp4
             int i = 0;
             foreach (User user in getFriends)
             {
-                s += user.Sex + "\n";
-                s += user.Relation + "\n";
-                s += user.HasMobile + "\n";
-                s += user.BirthDate + "\n";
+                if (checkBox1.Checked)
+                {
+                    s += "Пол:" + user.Sex + "\n";
+                }
+                if (checkBox2.Checked)
+                {
+                    s += "Отношения:" + user.Relation + "\n";
+                }
+                if (checkBox3.Checked)
+                {
+                    s += "Номер телефона:" + user.MobilePhone + "\n";
+                }
+                if (checkBox4.Checked)
+                {
+                    s += "День рождения:" + user.BirthDate + "\n";
+                }
                 users.Add(new vkuser(user.FirstName + " " + user.LastName, s));
                 listBox1.Items.Add(users[i]._Name);
                 i++;
@@ -65,7 +77,38 @@ namespace WinFormsApp4
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            listBox1.Items.Clear();
+            users.Clear();
+            var getFollowers = _api_group.Groups.GetMembers(new GroupsGetMembersParams()
+            {
+                GroupId = "205655768",
+                Fields = VkNet.Enums.Filters.UsersFields.FirstNameAbl
+            });
+            string s = "";
+            int i = 0;
+            foreach (User user in getFollowers)
+            {
+                if (checkBox1.Checked)
+                {
+                    s += "Пол:" + user.Sex + "\n";
+                }
+                if (checkBox2.Checked)
+                {
+                    s += "Отношения:" + user.Relation + "\n";
+                }
+                if (checkBox3.Checked)
+                {
+                    s += "Номер телефона:" + user.MobilePhone + "\n";
+                }
+                if (checkBox4.Checked)
+                {
+                    s += "День рождения:" + user.BirthDate + "\n";
+                }
+                users.Add(new vkuser(user.FirstName + " " + user.LastName, s));
+                listBox1.Items.Add(users[i]._Name);
+                i++;
+                s = "";
+            }
         }
     }
 }
