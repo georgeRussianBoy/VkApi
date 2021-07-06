@@ -22,7 +22,6 @@ namespace WinFormsApp4
         {
             InitializeComponent();
             _api_user = api_user;
-            MessageBox.Show(api_user.Token);
             _api_group = api_group;
         }
 
@@ -43,7 +42,6 @@ namespace WinFormsApp4
             listBox1.Items.Clear();
             users.Clear();
 
-            MessageBox.Show(_api_user.Token);
             var getFriends = _api_user.Friends.Get(new VkNet.Model.RequestParams.FriendsGetParams
             {
                 Fields = VkNet.Enums.Filters.ProfileFields.All
