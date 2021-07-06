@@ -52,5 +52,10 @@ namespace WinFormsApp4
             }
             return token;
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

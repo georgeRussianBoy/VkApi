@@ -40,19 +40,22 @@ namespace WinFormsApp4
             // textBox1
             // 
             this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(220, 42);
+            this.textBox1.Location = new System.Drawing.Point(154, 25);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(548, 31);
+            this.textBox1.Size = new System.Drawing.Size(385, 23);
             this.textBox1.TabIndex = 0;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(220, 149);
+            this.checkBox1.Location = new System.Drawing.Point(154, 89);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(145, 29);
+            this.checkBox1.Size = new System.Drawing.Size(97, 19);
             this.checkBox1.TabIndex = 1;
             this.checkBox1.Text = "read from file";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -60,9 +63,10 @@ namespace WinFormsApp4
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(290, 219);
+            this.button1.Location = new System.Drawing.Point(203, 131);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(226, 61);
+            this.button1.Size = new System.Drawing.Size(158, 37);
             this.button1.TabIndex = 2;
             this.button1.Text = "Авторизоваться";
             this.button1.UseVisualStyleBackColor = true;
@@ -71,40 +75,44 @@ namespace WinFormsApp4
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(113, 45);
+            this.label1.Location = new System.Drawing.Point(79, 27);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 25);
+            this.label1.Size = new System.Drawing.Size(68, 15);
             this.label1.TabIndex = 3;
             this.label1.Text = "Auth Token";
             // 
             // textBox2
             // 
             this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(220, 98);
+            this.textBox2.Location = new System.Drawing.Point(154, 59);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(548, 31);
+            this.textBox2.Size = new System.Drawing.Size(385, 23);
             this.textBox2.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(72, 101);
+            this.label2.Location = new System.Drawing.Point(50, 61);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(142, 25);
+            this.label2.Size = new System.Drawing.Size(96, 15);
             this.label2.TabIndex = 5;
             this.label2.Text = "Commuty Token";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(560, 270);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.textBox1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
