@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using VkNet;
+using VkNet.Model;
+using VkNet.Model.RequestParams;
 
 namespace WinFormsApp4
 {
@@ -23,18 +25,61 @@ namespace WinFormsApp4
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             textBox1.Enabled = !textBox1.Enabled;
+            textBox2.Enabled = !textBox2.Enabled;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string token = null;
+            string userToken = null;
+            string communityToken = null;
             if (checkBox1.Checked)
-                token = getTokenFromFile();
+            {
+                userToken = getTokenFromFile(false); // false - for user
+                communityToken = getTokenFromFile(true);  // true - for community
+            }
             else
-                token = textBox1.Text;
+            {
+                userToken = textBox1.Text;
+                communityToken = textBox2.Text;
+            }
+                
+            var apiUser = new VkApi();
+            var apiCommunity = new VkApi();
+
+            try
+            {
+                apiUser.Authorize(new ApiAuthParams
+                {
+                    AccessToken = userToken
+                });
+        }
+            catch (VkNet.Exception.AccessTokenInvalidException)
+            {
+
+                MessageBox.Show("Invalid token for user");
+                return;
+            }
+    MessageBox.Show(communityToken);
+            try
+            {
+                apiCommunity.Authorize(new ApiAuthParams
+                {
+                    AccessToken = communityToken
+                });
+        }
+            catch (VkNet.Exception.AccessTokenInvalidException)
+            {
+                MessageBox.Show("Invalid token for community");
+                return;
+            }
+
+    FunctionalForm f = new FunctionalForm(apiUser, apiCommunity);
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
         }
 
-        private string getTokenFromFile()
+        private string getTokenFromFile(bool forCommunity)
         {
             string userName = System.Security.Principal.WindowsIdentity.GetCurrent().Name.Split('\\')[1];
             string real_file_path = file_path.Replace("USER_NAME", userName);
@@ -43,6 +88,8 @@ namespace WinFormsApp4
             {
                 using (var sr = new StreamReader(real_file_path))
                 {
+                    if (forCommunity)
+                        sr.ReadLine();
                     token = sr.ReadLine();
                 }
             }
@@ -53,7 +100,7 @@ namespace WinFormsApp4
             return token;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
