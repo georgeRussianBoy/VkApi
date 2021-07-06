@@ -58,7 +58,7 @@ namespace WinFormsApp4
                     sum += age;
                 }
             }
-            textBox2.Text += (sum / k).ToString() + " лет\n";
+            textBox2.Text = (sum / k).ToString() + " лет\n";
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -67,10 +67,10 @@ namespace WinFormsApp4
             VkNet.Utils.VkCollection<User> getFollow;
             try
             {
-                getFollow = vkapi.Groups.GetMembers(new GroupsGetMembersParams()
+                getFollow = apiUser.Groups.GetMembers(new GroupsGetMembersParams()
                 {
                     GroupId = textBox1.Text,
-                    Fields = VkNet.Enums.Filters.UsersFields.FirstNameAbl
+                    Fields = VkNet.Enums.Filters.UsersFields.All
                 });
             }
             catch (VkNet.Exception.VkApiException ex)
@@ -80,14 +80,21 @@ namespace WinFormsApp4
             }
             foreach (User user in getFollow)
             {
-                var birth = DateTime.Parse(user.BirthDate);
-                if (now.Day == birth.Day && now.Month == birth.Month)
+                if (user.BirthDate?.Length >= 3)
                 {
-                    var post = vkapi.Wall.Post(new WallPostParams
+                    var birth = DateTime.Parse(user.BirthDate);
+                    if (now.Day == birth.Day && now.Month == birth.Month)
                     {
-                        Message = "С днем рождения" + "," + user.FirstName + user.LastName
-                    });
+                        MessageBox.Show("Birthday: "+ birth.Day.ToString() + " " + birth.Month.ToString());
+                        var post = apiUser.Wall.Post(new WallPostParams
+                        {
+                            OwnerId = -int.Parse(textBox1.Text),
+                            Message = $"С днем рождения, @id{user.Id} ({user.FirstName} {user.LastName})"
+                        });
+                    }
+                    MessageBox.Show(birth.Day.ToString() + " " + birth.Month.ToString());
                 }
+                
             }
         }
 
