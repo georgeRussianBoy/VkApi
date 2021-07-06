@@ -60,5 +60,10 @@ namespace WinFormsApp4
             }
             return token;
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
