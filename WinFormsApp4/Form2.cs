@@ -11,14 +11,14 @@ using VkNet.Model.RequestParams;
 
 namespace WinFormsApp4
 {
-    public partial class Form2 : Form
+    public partial class Formforgetmembers : Form
     {
         string _tokenuser;
         string _tokengroup;
         VkApi _api_user = new VkApi();
         VkApi _api_group = new VkApi();
         List<vkuser> users = new List<vkuser>();
-        public Form2(VkApi api_user, VkApi api_group)
+        public Formforgetmembers(VkApi api_user, VkApi api_group)
         {
             InitializeComponent();
             _api_user = api_user;

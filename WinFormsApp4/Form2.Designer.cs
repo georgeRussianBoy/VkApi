@@ -1,7 +1,7 @@
 ﻿
 namespace WinFormsApp4
 {
-    partial class Form2
+    partial class Formforgetmembers
     {
         /// <summary>
         /// Required designer variable.
@@ -74,7 +74,7 @@ namespace WinFormsApp4
             this.label1.TabIndex = 3;
             this.label1.Text = "label1";
             // 
-            // Form2
+            // Formforgetmembers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -83,7 +83,7 @@ namespace WinFormsApp4
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listBox1);
-            this.Name = "Form2";
+            this.Name = "Formforgetmembers";
             this.Text = "Form2";
             this.ResumeLayout(false);
             this.PerformLayout();
