@@ -27,14 +27,20 @@ namespace WinFormsApp4
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string token = null;
+            string userToken = null;
+            string communityToken = null;
             if (checkBox1.Checked)
-                token = getTokenFromFile();
+            {
+                userToken = getTokenFromFile(false); // false - for user
+                communityToken = getTokenFromFile(true);  // true - for community
+            }
+                
             else
-                token = textBox1.Text;
+                userToken = textBox1.Text;
+                communityToken = textBox2.Text;
         }
 
-        private string getTokenFromFile()
+        private string getTokenFromFile(bool forCommunity)
         {
             string userName = System.Security.Principal.WindowsIdentity.GetCurrent().Name.Split('\\')[1];
             string real_file_path = file_path.Replace("USER_NAME", userName);
@@ -43,6 +49,8 @@ namespace WinFormsApp4
             {
                 using (var sr = new StreamReader(real_file_path))
                 {
+                    if (forCommunity)
+                        sr.ReadLine();
                     token = sr.ReadLine();
                 }
             }
