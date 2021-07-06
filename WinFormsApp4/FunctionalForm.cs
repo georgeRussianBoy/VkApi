@@ -23,6 +23,8 @@ namespace WinFormsApp4
             VkApi api = new VkApi();
             if (token.Length > visibleChars)
                 label2.Text = token.Substring(0, visibleChars) + new string('*', token.Length - visibleChars);
+
+
         }
     }
 
