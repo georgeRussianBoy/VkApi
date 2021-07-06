@@ -59,7 +59,7 @@ namespace WinFormsApp4
                 MessageBox.Show("Invalid token for user");
                 return;
             }
-    MessageBox.Show(communityToken);
+   // MessageBox.Show(communityToken);
             try
             {
                 apiCommunity.Authorize(new ApiAuthParams
@@ -73,7 +73,7 @@ namespace WinFormsApp4
                 return;
             }
 
-    FunctionalForm f = new FunctionalForm(apiUser, apiCommunity);
+            FunctionalForm f = new FunctionalForm(ref apiUser, ref apiCommunity);
             this.Hide();
             f.ShowDialog();
             this.Show();
