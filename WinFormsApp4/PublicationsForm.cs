@@ -53,12 +53,12 @@ namespace WinFormsApp4
                     OwnerId = users[i].Id,
                     Count = 1,
                 });
+                var repost = _apiUser.Wall.Repost(("wall" + users[i].Id.ToString() + "_" + post.WallPosts[0].Id.ToString()), message: "",
+                    groupId: 205655768, markAsAds: false);
 
-                var repost = _apiUser.Wall.Repost(("wall" + users[i].Id.ToString() + "_" + post.WallPosts[0].Id.ToString()),message:"",
-                    groupId: 205655768,markAsAds:false);  
 
 
-        }
+            }
         }
     }
 }
