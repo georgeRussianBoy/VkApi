@@ -24,38 +24,70 @@ namespace WinFormsApp4
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            vkapi.Authorize(new ApiAuthParams
-            {
-                AccessToken = forUsers
-            });
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //Определить возраст пользователя, как среднее арифметическое для возраста его друзей.
-            
             int sum = 0;
             int k = 0;
-            var friends = vkapi.Friends.Get(new VkNet.Model.RequestParams.FriendsGetParams
+            VkNet.Utils.VkCollection<User> friends;
+            try
             {
-                UserId = Convert.ToInt64(textBox1.Text),
-                Fields = VkNet.Enums.Filters.ProfileFields.All
-            }) ;
+                friends = vkapi.Friends.Get(new VkNet.Model.RequestParams.FriendsGetParams
+                {
+                    UserId = Convert.ToInt64(textBox1.Text),
+                    Fields = VkNet.Enums.Filters.ProfileFields.All
+                });
+            }
+            catch (VkNet.Exception.VkApiException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
             var now = DateTime.Today;
             foreach (User user in friends)
             {
-                k++;
-                var birth = DateTime.Parse(user.BirthDate);
-                int age = now.Year - birth.Year;
-                sum += age;
+                if(user.BirthDate!= null && user.BirthDate.Length >= 8)
+                {
+                    k++;
+                    var birth = DateTime.Parse(user.BirthDate);
+                    int age = now.Year - birth.Year;
+                    sum += age;
+                }
             }
-            listBox1.Text += sum / k + "лет";
+            textBox2.Text += sum / k + "лет";
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            var now = DateTime.Today;
+            VkNet.Utils.VkCollection<User> getFollow;
+            try
+            {
+                getFollow = vkapi.Groups.GetMembers(new GroupsGetMembersParams()
+                {
+                    GroupId = textBox1.Text,
+                    Fields = VkNet.Enums.Filters.UsersFields.FirstNameAbl
+                });
+            }
+            catch (VkNet.Exception.VkApiException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            foreach (User user in getFollow)
+            {
+                var birth = DateTime.Parse(user.BirthDate);
+                if (now.Day == birth.Day && now.Month == birth.Month)
+                {
+                    var post = vkapi.Wall.Post(new WallPostParams
+                    {
+                        Message = "С днем рождения" + "," + user.FirstName + user.LastName
+                    });
+                }
+            }
         }
 
-       
+
     }
 }
