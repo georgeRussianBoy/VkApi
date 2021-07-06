@@ -13,7 +13,7 @@ using VkNet.Model;
 using VkNet.Model.RequestParams;
 
 namespace WinFormsApp4
-{
+{   
     public partial class Form1 : Form
     {
         string file_path = @"C:\Users\USER_NAME\Desktop\token.txt";
@@ -73,7 +73,7 @@ namespace WinFormsApp4
                 return;
             }
 
-            FunctionalForm f = new FunctionalForm(ref apiUser, ref apiCommunity);
+            FunctionalForm f = new FunctionalForm(apiUser, apiCommunity);
             this.Hide();
             f.ShowDialog();
             this.Show();
