@@ -40,70 +40,101 @@ namespace WinFormsApp4
         {
             listBox1.Items.Clear();
             users.Clear();
-            var getFriends = _api_user.Friends.Get(new VkNet.Model.RequestParams.FriendsGetParams
+            int a = -1;
+            try
             {
-                Fields = VkNet.Enums.Filters.ProfileFields.All
-            });
-            string s = "";
-            int i = 0;
-            foreach (User user in getFriends)
-            {
-                if (checkBox1.Checked)
+                if (textBox1.Text != "")
                 {
-                    s += "Пол:" + user.Sex + "\n";
+                    a = Convert.ToInt32(textBox1.Text);
                 }
-                if (checkBox2.Checked)
-                {
-                    s += "Отношения:" + user.Relation + "\n";
-                }
-                if (checkBox3.Checked)
-                {
-                    s += "Номер телефона:" + user.MobilePhone + "\n";
-                }
-                if (checkBox4.Checked)
-                {
-                    s += "День рождения:" + user.BirthDate + "\n";
-                }
-                users.Add(new vkuser(user.FirstName + " " + user.LastName, s));
-                listBox1.Items.Add(users[i]._Name);
-                i++;
-                s = "";
             }
+            catch
+            {
+                return;
+            }
+            try
+            {
+                var getFriends = _api_user.Friends.Get(new VkNet.Model.RequestParams.FriendsGetParams
+                {
+                    UserId = a,
+                    Fields = VkNet.Enums.Filters.ProfileFields.All
+
+                });
+                string s = "";
+                int i = 0;
+                foreach (User user in getFriends)
+                {
+                    if (checkBox1.Checked)
+                    {
+                        s += "Пол:" + user.Sex + "\n";
+                    }
+                    if (checkBox2.Checked)
+                    {
+                        s += "Отношения:" + user.Relation + "\n";
+                    }
+                    if (checkBox3.Checked)
+                    {
+                        s += "Номер телефона:" + user.MobilePhone + "\n";
+                    }
+                    if (checkBox4.Checked)
+                    {
+                        s += "День рождения:" + user.BirthDate + "\n";
+                    }
+                    users.Add(new vkuser(user.FirstName + " " + user.LastName, s));
+                    listBox1.Items.Add(users[i]._Name);
+                    i++;
+                    s = "";
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Такого пользователя не существует");
+                return;
+            }
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
             users.Clear();
-            var getFollowers = _api_group.Groups.GetMembers(new GroupsGetMembersParams()
+            try
             {
-                GroupId = "205655768",
-                Fields = VkNet.Enums.Filters.UsersFields.FirstNameAbl
-            });
-            string s = "";
-            int i = 0;
-            foreach (User user in getFollowers)
+                var getFollowers = _api_group.Groups.GetMembers(new GroupsGetMembersParams()
+                {
+                    GroupId = textBox1.Text,
+                    Fields = VkNet.Enums.Filters.UsersFields.FirstNameAbl
+                });
+                string s = "";
+                int i = 0;
+                foreach (User user in getFollowers)
+                {
+                    if (checkBox1.Checked)
+                    {
+                        s += "Пол:" + user.Sex + "\n";
+                    }
+                    if (checkBox2.Checked)
+                    {
+                        s += "Отношения:" + user.Relation + "\n";
+                    }
+                    if (checkBox3.Checked)
+                    {
+                        s += "Номер телефона:" + user.MobilePhone + "\n";
+                    }
+                    if (checkBox4.Checked)
+                    {
+                        s += "День рождения:" + user.BirthDate + "\n";
+                    }
+                    users.Add(new vkuser(user.FirstName + " " + user.LastName, s));
+                    listBox1.Items.Add(users[i]._Name);
+                    i++;
+                    s = "";
+                }
+            }
+            catch
             {
-                if (checkBox1.Checked)
-                {
-                    s += "Пол:" + user.Sex + "\n";
-                }
-                if (checkBox2.Checked)
-                {
-                    s += "Отношения:" + user.Relation + "\n";
-                }
-                if (checkBox3.Checked)
-                {
-                    s += "Номер телефона:" + user.MobilePhone + "\n";
-                }
-                if (checkBox4.Checked)
-                {
-                    s += "День рождения:" + user.BirthDate + "\n";
-                }
-                users.Add(new vkuser(user.FirstName + " " + user.LastName, s));
-                listBox1.Items.Add(users[i]._Name);
-                i++;
-                s = "";
+                MessageBox.Show("Такой группы не существует");
+                return;
             }
         }
 
@@ -111,6 +142,11 @@ namespace WinFormsApp4
         {
             listBox1.Items.Clear();
             users.Clear();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
