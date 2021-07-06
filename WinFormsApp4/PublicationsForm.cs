@@ -45,19 +45,24 @@ namespace WinFormsApp4
 
         private void button2_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < users.Count; i++)
+            
+            if (listBox1.SelectedIndex != -1 && textBox1.Text != "")
             {
+                int i = listBox1.SelectedIndex;
                 var post = _apiUser.Wall.Get(new VkNet.Model.RequestParams.WallGetParams
                 {
-
                     OwnerId = users[i].Id,
-                    Count = 1,
-                });
+                    Count = ulong.Parse(textBox1.Text)
+                }) ;
+
+
                 var repost = _apiUser.Wall.Repost(("wall" + users[i].Id.ToString() + "_" + post.WallPosts[0].Id.ToString()), message: "",
                     groupId: 205655768, markAsAds: false);
 
-
-
+            }
+            else
+            {
+                MessageBox.Show("Выберите пользователя");
             }
         }
     }
