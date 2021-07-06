@@ -13,8 +13,6 @@ namespace WinFormsApp4
 {
     public partial class Formforgetmembers : Form
     {
-        string _tokenuser;
-        string _tokengroup;
         VkApi _api_user;
         VkApi _api_group;
         List<vkuser> users = new List<vkuser>();
@@ -22,6 +20,7 @@ namespace WinFormsApp4
         {
             InitializeComponent();
             _api_user = api_user;
+            MessageBox.Show(api_user.Token);
             _api_group = api_group;
         }
 
@@ -41,8 +40,6 @@ namespace WinFormsApp4
         {
             listBox1.Items.Clear();
             users.Clear();
-            // обработать исключения!
-
             var getFriends = _api_user.Friends.Get(new VkNet.Model.RequestParams.FriendsGetParams
             {
                 Fields = VkNet.Enums.Filters.ProfileFields.All
@@ -108,6 +105,12 @@ namespace WinFormsApp4
                 i++;
                 s = "";
             }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            users.Clear();
         }
     }
 }
