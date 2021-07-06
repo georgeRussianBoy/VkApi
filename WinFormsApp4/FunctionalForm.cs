@@ -35,6 +35,12 @@ namespace WinFormsApp4
             f.ShowDialog();
            
         }
+
+        private void PubMakeForm_Click(object sender, EventArgs e)
+        {
+            PublicationsForm f = new PublicationsForm(_apiUser,_apiCommunity);
+            f.Show();
+        }
     }
 
 }
