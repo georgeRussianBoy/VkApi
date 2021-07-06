@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using VkNet;
+using VkNet.Model;
+using VkNet.Model.RequestParams;
 
 namespace WinFormsApp4
 {
@@ -23,6 +25,7 @@ namespace WinFormsApp4
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             textBox1.Enabled = !textBox1.Enabled;
+            textBox2.Enabled = !textBox2.Enabled;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -34,10 +37,46 @@ namespace WinFormsApp4
                 userToken = getTokenFromFile(false); // false - for user
                 communityToken = getTokenFromFile(true);  // true - for community
             }
-                
             else
+            {
                 userToken = textBox1.Text;
                 communityToken = textBox2.Text;
+            }
+                
+            var apiUser = new VkApi();
+            var apiCommunity = new VkApi();
+
+            try
+            {
+                apiUser.Authorize(new ApiAuthParams
+                {
+                    AccessToken = userToken
+                });
+        }
+            catch (VkNet.Exception.AccessTokenInvalidException)
+            {
+
+                MessageBox.Show("Invalid token for user");
+                return;
+            }
+    MessageBox.Show(communityToken);
+            try
+            {
+                apiCommunity.Authorize(new ApiAuthParams
+                {
+                    AccessToken = communityToken
+                });
+        }
+            catch (VkNet.Exception.AccessTokenInvalidException)
+            {
+                MessageBox.Show("Invalid token for community");
+                return;
+            }
+
+    FunctionalForm f = new FunctionalForm(apiUser, apiCommunity);
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
         }
 
         private string getTokenFromFile(bool forCommunity)

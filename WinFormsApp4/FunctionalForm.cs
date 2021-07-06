@@ -15,16 +15,25 @@ namespace WinFormsApp4
     {
         string token = "";
         int visibleChars = 5;
-        VkApi api;
-        public FunctionalForm(string token)
+        VkApi apiUser;
+        VkApi apiCommunity;
+        public FunctionalForm(VkApi apiUser, VkApi apiCommunity)
         {
             InitializeComponent();
 
-            VkApi api = new VkApi();
+            apiUser = new VkApi();
+            apiCommunity = new VkApi();
             if (token.Length > visibleChars)
                 label2.Text = token.Substring(0, visibleChars) + new string('*', token.Length - visibleChars);
+            this.apiCommunity = apiCommunity;
+            this.apiUser = apiUser;
+        }
 
-
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Formforgetmembers f = new Formforgetmembers(apiUser, apiCommunity);
+            f.ShowDialog();
+           
         }
     }
 
