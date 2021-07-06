@@ -67,7 +67,7 @@ namespace WinFormsApp4
             VkNet.Utils.VkCollection<User> getFollow;
             try
             {
-                getFollow = vkapi.Groups.GetMembers(new GroupsGetMembersParams()
+                getFollow = apiUser.Groups.GetMembers(new GroupsGetMembersParams()
                 {
                     GroupId = textBox1.Text,
                     Fields = VkNet.Enums.Filters.UsersFields.FirstNameAbl
@@ -83,7 +83,7 @@ namespace WinFormsApp4
                 var birth = DateTime.Parse(user.BirthDate);
                 if (now.Day == birth.Day && now.Month == birth.Month)
                 {
-                    var post = vkapi.Wall.Post(new WallPostParams
+                    var post = apiUser.Wall.Post(new WallPostParams
                     {
                         Message = "С днем рождения" + "," + user.FirstName + user.LastName
                     });
