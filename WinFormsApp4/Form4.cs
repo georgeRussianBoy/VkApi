@@ -52,7 +52,10 @@ namespace WinFormsApp4
                 if (user.BirthDate?.Length >= 8)
                 {
                     k++;
-                    var birth = DateTime.Parse(user.BirthDate);
+                    Console.WriteLine(user.BirthDate);
+                    DateTime birth;
+                    if (!DateTime.TryParse(user.BirthDate, out birth)) // check for correct data format
+                        continue;
                     int age = now.Year - birth.Year;
                     sum += age;
                 }
