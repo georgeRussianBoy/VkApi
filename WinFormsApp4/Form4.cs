@@ -93,14 +93,23 @@ namespace WinFormsApp4
                     var birth = DateTime.Parse(user.BirthDate);
                     if (now.Day == birth.Day && now.Month == birth.Month)
                     {
-                        var post = apiUser.Wall.Post(new WallPostParams
+                        try
                         {
-                            OwnerId = -int.Parse(textBox1.Text),
-                            FromGroup = true,
-                            Message = $"С днем рождения, @id{user.Id} ({user.FirstName} {user.LastName})"
-                        });
-                        s += user.FirstName + " " + user.LastName + " Поздравлен(а)\n";
-                        greet = true;
+                            var post = apiUser.Wall.Post(new WallPostParams
+                            {
+                                OwnerId = -int.Parse(textBox1.Text),
+                                FromGroup = true,
+                                Message = $"С днем рождения, @id{user.Id} ({user.FirstName} {user.LastName})"
+                            });
+                            s += user.FirstName + " " + user.LastName + " Поздравлен(а)\n";
+                            greet = true;
+                        }
+                        catch (VkNet.Exception.PostLimitException ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                            return;
+                        }
+                        
                     }
                 }
             }
