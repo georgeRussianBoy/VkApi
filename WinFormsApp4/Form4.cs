@@ -53,6 +53,7 @@ namespace WinFormsApp4
                 if (user.BirthDate?.Length >= 8)
                 {
                     k++;
+                    MessageBox.Show(user.BirthDate);
                     var birth = DateTime.Parse(user.BirthDate);
                     int age = now.Year - birth.Year;
                     sum += age;

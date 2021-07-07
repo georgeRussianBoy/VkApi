@@ -99,7 +99,7 @@ namespace WinFormsApp4
             users.Clear();
             try
             {
-                var getFollowers = _api_group.Groups.GetMembers(new GroupsGetMembersParams()
+                var getFollowers = _api_user.Groups.GetMembers(new GroupsGetMembersParams()
                 {
                     GroupId = textBox1.Text,
                     Fields = VkNet.Enums.Filters.UsersFields.FirstNameAbl
