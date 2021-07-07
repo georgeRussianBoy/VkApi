@@ -78,6 +78,8 @@ namespace WinFormsApp4
                 MessageBox.Show(ex.Message);
                 return;
             }
+            string s = "";
+            bool greet = false;
             foreach (User user in getFollow)
             {
                 if (user.BirthDate?.Length >= 3)
@@ -85,16 +87,24 @@ namespace WinFormsApp4
                     var birth = DateTime.Parse(user.BirthDate);
                     if (now.Day == birth.Day && now.Month == birth.Month)
                     {
-                        MessageBox.Show("Birthday: "+ birth.Day.ToString() + " " + birth.Month.ToString());
                         var post = apiUser.Wall.Post(new WallPostParams
                         {
                             OwnerId = -int.Parse(textBox1.Text),
+                            FromGroup = true,
                             Message = $"С днем рождения, @id{user.Id} ({user.FirstName} {user.LastName})"
                         });
+                        s += user.FirstName + " " + user.LastName + " Поздравлен(а)\n";
+                        greet = true;
                     }
-                    MessageBox.Show(birth.Day.ToString() + " " + birth.Month.ToString());
                 }
-                
+            }
+            if (!greet)
+            {
+                textBox2.Text = "Никто не поздравлен!";
+            }
+            else
+            {
+                textBox2.Text = s;
             }
         }
 
