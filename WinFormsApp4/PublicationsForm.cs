@@ -78,7 +78,7 @@ namespace WinFormsApp4
                 try
                 {
                     var repost = _apiUser.Wall.Repost(("wall" + user.Id.ToString() + "_" + post.WallPosts[index].Id.ToString()), message: "",
-                groupId: 205655768, markAsAds: false);
+                groupId: id, markAsAds: false);
                 }
                 catch (Exception ex)
                 {
