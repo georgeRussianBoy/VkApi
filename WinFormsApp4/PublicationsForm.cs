@@ -90,11 +90,21 @@ namespace WinFormsApp4
             {
                  
                 int i = listBox1.SelectedIndex;
-                var post = _apiUser.Wall.Get(new VkNet.Model.RequestParams.WallGetParams
+                WallGetObject post;
+                try
                 {
-                    OwnerId = users[i].Id,
-                    
-                });
+                    post = _apiUser.Wall.Get(new VkNet.Model.RequestParams.WallGetParams
+                    {
+                        OwnerId = users[i].Id,
+
+                    });
+                }
+                catch (VkNet.Exception.UserDeletedOrBannedException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+                
                 label1.ForeColor = Color.Red;
                 label1.Text = $"Posts:{post.TotalCount}";
                 listBox2.Items.Clear();
