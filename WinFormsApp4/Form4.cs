@@ -95,7 +95,7 @@ namespace WinFormsApp4
                             var post = apiUser.Wall.Post(new WallPostParams
                             {
                                 OwnerId = -int.Parse(textBox1.Text),
-                                FromGroup = true,
+                                FromGroup = checkBox1.Checked,
                                 Message = $"С днем рождения, @id{user.Id} ({user.FirstName} {user.LastName})"
                             });
                             s += user.FirstName + " " + user.LastName + " Поздравлен(а)\n";
