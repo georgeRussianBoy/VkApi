@@ -37,9 +37,10 @@ namespace WinFormsApp4
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(557, 12);
+            this.button1.Location = new System.Drawing.Point(696, 15);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(168, 47);
+            this.button1.Size = new System.Drawing.Size(210, 59);
             this.button1.TabIndex = 0;
             this.button1.Text = "Find Users";
             this.button1.UseVisualStyleBackColor = true;
@@ -48,17 +49,19 @@ namespace WinFormsApp4
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(44, 13);
+            this.listBox1.ItemHeight = 25;
+            this.listBox1.Location = new System.Drawing.Point(55, 16);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(305, 344);
+            this.listBox1.Size = new System.Drawing.Size(380, 429);
             this.listBox1.TabIndex = 1;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(383, 13);
+            this.button2.Location = new System.Drawing.Point(479, 16);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(168, 47);
+            this.button2.Size = new System.Drawing.Size(210, 59);
             this.button2.TabIndex = 2;
             this.button2.Text = "Publishing";
             this.button2.UseVisualStyleBackColor = true;
@@ -66,22 +69,25 @@ namespace WinFormsApp4
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(383, 66);
+            this.textBox1.Location = new System.Drawing.Point(479, 82);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(168, 27);
+            this.textBox1.Size = new System.Drawing.Size(209, 31);
             this.textBox1.TabIndex = 3;
             // 
             // PublicationsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1000, 562);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "PublicationsForm";
             this.Text = "PublicationsForm";
+            this.Load += new System.EventHandler(this.PublicationsForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

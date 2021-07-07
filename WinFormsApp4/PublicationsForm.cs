@@ -65,5 +65,10 @@ namespace WinFormsApp4
                 MessageBox.Show("Выберите пользователя");
             }
         }
+
+        private void PublicationsForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
