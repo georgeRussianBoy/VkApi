@@ -24,7 +24,6 @@ namespace WinFormsApp4
         private void button1_Click(object sender, EventArgs e)
         {
             //Определить возраст пользователя, как среднее арифметическое для возраста его друзей.
-            //VkNet.Exception.VkApiMethodInvokeException: "This profile is private"
             int sum = 0;
             int k = 0;
             VkNet.Utils.VkCollection<User> friends;
@@ -58,7 +57,10 @@ namespace WinFormsApp4
                     sum += age;
                 }
             }
-            textBox2.Text = (sum / k).ToString() + " лет\n";
+            if (k == 0)
+                textBox2.Text = "У пользователя нет друзей";
+            else
+                textBox2.Text = (sum / k).ToString() + " лет\n";
             
         }
 
