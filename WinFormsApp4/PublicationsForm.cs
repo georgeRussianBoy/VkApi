@@ -67,6 +67,12 @@ namespace WinFormsApp4
         }
         private string Reposting(ref WallGetObject post,User user)
         {
+            int id = 0;
+            if(!int.TryParse(textBox1.Text, out id))
+            {
+                return "incorrect group ID";
+            }
+
             foreach(int index in listBox2.SelectedIndices)
             { 
                 try
