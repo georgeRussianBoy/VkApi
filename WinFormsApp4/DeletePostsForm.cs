@@ -34,8 +34,6 @@ namespace WinFormsApp4
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-
             int ownerId = 0;
             if (!int.TryParse(textBox1.Text, out ownerId) && ownerId < 1) 
                 return;
