@@ -93,11 +93,11 @@ namespace WinFormsApp4
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(42, 255);
+            this.checkBox1.Location = new System.Drawing.Point(39, 258);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(196, 29);
+            this.checkBox1.Size = new System.Drawing.Size(169, 29);
             this.checkBox1.TabIndex = 4;
-            this.checkBox1.Text = "очистить всю стену";
+            this.checkBox1.Text = "remove all posts";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
