@@ -74,10 +74,9 @@ namespace WinFormsApp4
                     var repost = _apiUser.Wall.Repost(("wall" + user.Id.ToString() + "_" + post.WallPosts[index].Id.ToString()), message: "",
                 groupId: 205655768, markAsAds: false);
                 }
-                catch 
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Приложение поймало капчу");
-                    break;
+                    return ex.Message;
                 }
                 
             }
