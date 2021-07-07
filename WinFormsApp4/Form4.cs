@@ -59,6 +59,7 @@ namespace WinFormsApp4
                 }
             }
             textBox2.Text = (sum / k).ToString() + " лет\n";
+            
         }
 
         private void button2_Click(object sender, EventArgs e)

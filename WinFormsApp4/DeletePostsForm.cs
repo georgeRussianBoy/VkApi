@@ -51,7 +51,16 @@ namespace WinFormsApp4
             }
             else
             {
-                int count = int.Parse(textBox2.Text);
+                int count = 0;
+                try
+                {
+                    count = int.Parse(textBox2.Text);
+                }
+                catch (System.FormatException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
 
                 for (int i = 0; i < count / 100; ++i)
                 {
@@ -65,6 +74,7 @@ namespace WinFormsApp4
 
         ulong delete_last(long ownerId, int count)
         {
+            if (count <= 0) return 0;
             progressBar1.Visible = true;
             var collectionForDelete = apiUser.Wall.Get(new VkNet.Model.RequestParams.WallGetParams
             {
